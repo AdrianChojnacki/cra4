@@ -21,7 +21,14 @@ class App extends Component {
   }
 
   render() {
-    return <div></div>;
+    const users = this.state.users.map((user) => (
+      <div className="user" key={user.id}>
+        <h4>{user.name}</h4>
+        <p>{user.address.city}</p>
+      </div>
+    ));
+
+    return <div>{users}</div>;
   }
 }
 
