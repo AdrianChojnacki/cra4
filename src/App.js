@@ -6,18 +6,30 @@ class App extends Component {
     users: [],
   };
 
-  componentDidMount() {
+  requestData = () => {
     const xhr = new XMLHttpRequest();
+
     xhr.open("GET", "http://jsonplaceholder.typicode.com/users", true);
 
-    xhr.onload = () => {
+    // xhr.onload = () => {
+    //   if (xhr.status === 200) {
+    //     const users = JSON.parse(xhr.response);
+    //     this.setState({ users });
+    //   }
+    // };
+
+    xhr.addEventListener("load", () => {
       if (xhr.status === 200) {
         const users = JSON.parse(xhr.response);
         this.setState({ users });
       }
-    };
+    });
 
     xhr.send(null);
+  };
+
+  componentDidMount() {
+    this.requestData();
   }
 
   render() {
